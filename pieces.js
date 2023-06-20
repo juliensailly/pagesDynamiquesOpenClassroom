@@ -53,10 +53,12 @@ boutonFiltrer.addEventListener("click", function () {
     const piecesFiltrees = pieces.filter(function (piece) {
         return piece.prix <= 35;
     });
-   console.log(piecesFiltrees)
+   console.log(piecesFiltrees);
 });
 
+//Correction Exercice
 const boutonDecroissant = document.querySelector(".btn-decroissant");
+
 boutonDecroissant.addEventListener("click", function () {
     const piecesOrdonnees = Array.from(pieces);
     piecesOrdonnees.sort(function (a, b) {
@@ -66,6 +68,7 @@ boutonDecroissant.addEventListener("click", function () {
 });
 
 const boutonNoDescription = document.querySelector(".btn-nodesc");
+
 boutonNoDescription.addEventListener("click", function () {
     const piecesFiltrees = pieces.filter(function (piece) {
         return piece.description;
@@ -79,6 +82,7 @@ for(let i = pieces.length -1 ; i >= 0; i--){
         noms.splice(i,1);
     }
 }
+console.log(noms)
 
 //Création de la liste
 const abordablesElements = document.createElement('ul');
@@ -86,23 +90,29 @@ const abordablesElements = document.createElement('ul');
 for(let i=0; i < noms.length ; i++){
     const nomElement = document.createElement('li');
     nomElement.innerText = noms[i];
-    abordablesElements.appendChild(nomElement)
+    abordablesElements.appendChild(nomElement);
 }
 // Ajout de l'en-tête puis de la liste au bloc résultats filtres
 document.querySelector('.abordables')
     .appendChild(abordablesElements)
 
-// Exercice
-const dispos = pieces.map(piece => piece.nom + " - " + piece.prix + "€");
+//Code Exercice 
+const nomsDisponibles = pieces.map(piece => piece.nom);
+const prixDisponibles = pieces.map(piece => piece.prix);
+
 for(let i = pieces.length -1 ; i >= 0; i--){
-    if(pieces[i].disponibilite == false){
-        dispos.splice(i,1);
+    if(pieces[i].disponibilite === false){
+        nomsDisponibles.splice(i,1);
+        prixDisponibles.splice(i,1);
     }
 }
-const disponiblesElements = document.createElement("ul");
-for(let i = 0; i < dispos.length; i++) {
-    const nomElement = document.createElement("li");
-    nomElement.innerText = dispos[i];
-    disponiblesElements.appendChild(nomElement);
+
+const disponiblesElement = document.createElement('ul');
+
+for(let i=0 ; i < nomsDisponibles.length ; i++){
+    const nomElement = document.createElement('li');
+    nomElement.innerText = `${nomsDisponibles[i]} - ${prixDisponibles[i]} €`;
+    disponiblesElement.appendChild(nomElement);
 }
-document.querySelector(".disponibles").appendChild(disponiblesElements);
+
+document.querySelector('.disponibles').appendChild(disponiblesElement);
