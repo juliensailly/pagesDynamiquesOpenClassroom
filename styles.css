@@ -68,5 +68,5 @@ main {
 }
 
 .fiches button + p {
-	background-color: red;
+	background-color: rgb(207, 207, 207);
 }

@@ -109,7 +109,6 @@ for(let i = pieces.length -1 ; i >= 0; i--){
         noms.splice(i,1);
     }
 }
-console.log(noms)
 //Création de l'en-tête
 
 const pElement = document.createElement('p')

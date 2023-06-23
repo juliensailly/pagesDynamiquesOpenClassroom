@@ -6,7 +6,7 @@ export function ajoutListenersAvis() {
 
         piecesElements[i].addEventListener("click", async function (event) {
             const id = event.target.dataset.id;
-            const avisDemande = window.localStorage.getItem("avisPiece" + id)
+            const avisDemande = window.localStorage.getItem("avisPiece" + id);
 
             var avis;
             if (avisDemande === null) {
@@ -17,7 +17,7 @@ export function ajoutListenersAvis() {
             } else {
                 avis = JSON.parse(avisDemande);
             }
-
+            
             if (document.querySelector(".avisPiece"+id) == null) {
                 const pieceElement = event.target.parentElement;
 
@@ -26,21 +26,20 @@ export function ajoutListenersAvis() {
                     avisElement.innerHTML += `<b>${avis[i].utilisateur}:</b> ${avis[i].commentaire} <br>`;
                 }
                 avisElement.classList.add("avisPiece"+id);
-                console.log(avisElement);
                 pieceElement.appendChild(avisElement);
             }
-
         });
 
-        const avisFiche = window.localStorage.getItem("avisPiece" + i);
+        const avisFiche = window.localStorage.getItem("avisPiece" + (i+1));
         if (avisFiche !== null) {
             var avis = JSON.parse(avisFiche);
-            const pieceElement = piecesElements[i - 1].parentElement;
+            const pieceElement = piecesElements[i].parentElement;
 
             const avisElement = document.createElement("p");
             for (let i = 0; i < avis.length; i++) {
                 avisElement.innerHTML += `<b>${avis[i].utilisateur}:</b> ${avis[i].commentaire} <br>`;
             }
+            avisElement.classList.add("avisPiece"+(i+1));
             pieceElement.appendChild(avisElement);
         }
     }
