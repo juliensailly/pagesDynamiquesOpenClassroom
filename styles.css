@@ -66,3 +66,7 @@ main {
 .fiches article h2 {
 	text-align: center;
 }
+
+.fiches button + p {
+	background-color: red;
+}
