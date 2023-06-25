@@ -1,4 +1,4 @@
-import { ajoutListenersAvis, ajoutListenerEnvoyerAvis, afficherAvis, afficherGraphiqueAvis } from "./avis.js";
+import { ajoutListenersAvis, ajoutListenerEnvoyerAvis, afficherAvis, afficherGraphiqueAvis, afficherStatsAvis } from "./avis.js";
 //Récupération des pièces eventuellement stockées dans le localStorage
 let pieces = window.localStorage.getItem('pieces');
 
@@ -177,3 +177,4 @@ boutonMettreAJour.addEventListener("click", function () {
 });
 
 await afficherGraphiqueAvis();
+await afficherStatsAvis();

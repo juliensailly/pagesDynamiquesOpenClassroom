@@ -82,3 +82,35 @@ export async function afficherGraphiqueAvis() {
     );
 }
 
+export async function afficherStatsAvis() {
+    const avis = await fetch("http://localhost:8081/avis").then(avis => avis.json());
+    const pieces = await fetch("http://localhost:8081/pieces").then(pieces => pieces.json());
+    const nb_commentaires = [0, 0];
+
+    for (let commentaire of avis) {
+        if (pieces[commentaire.pieceId - 1].disponibilite == false) {
+            nb_commentaires[0] += 1;
+        } else {
+            nb_commentaires[1] += 1;
+        }
+    }
+    
+    const data = {
+        labels: ["indisponible", "disponible"],
+        datasets: [{
+            label: "Nombre d'évaluations",
+            data: nb_commentaires,
+            backgroundColor: "rgba(0, 0, 255, 1)",
+        }],
+    };
+    // Objet de configuration final
+    const config = {
+        type: "bar",
+        data: data,
+    };
+    // Rendu du graphique dans l'élément canvas
+    const graphiqueAvis = new Chart(
+        document.querySelector("#stats-avis"),
+        config,
+    );
+}
